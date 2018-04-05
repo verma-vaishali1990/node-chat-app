@@ -22,18 +22,27 @@ io.on('connection',(socket)=>{
   // socket.on('sendEmail',(data) =>{
   //   console.log('email sent :',data);
   // });
-  // 
-  // socket.emit('newMessage',{
-  //   from:'Money',
-  //   msg:'Lets leave for home'
-  // });
+  //
 
+
+  socket.emit('newMessage',{
+    from:'Admin',
+    msg:'Welcome to the chat app'
+  });
+  socket.broadcast.emit('newMessage',{
+    from:'Admin',
+    msg:'New use rhas joined chat room'
+  });
   socket.on('createMsg',(message)=>{
     console.log('Message sent',message);
     io.emit('newMessage',{
       from:message.from,
       msg:message.msg
     });
+    // socket.broadcast.emit('newMessage',{
+    //   from:message.from,
+    //   msg:message.msg
+    // });
   });
 
   socket.on('disconnect',()=>{
