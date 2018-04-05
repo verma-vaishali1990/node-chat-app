@@ -9,7 +9,7 @@
 //   console.log("New Email",email);
 // });
 socket.on('newMessage', function(msg){
-  console.log("New message",msg);
+  console.log("New message ",msg);
 });
 // socket.emit('createMsg', {
 //   to:'Money',
