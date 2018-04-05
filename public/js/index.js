@@ -7,9 +7,17 @@
 });
 
 socket.on('newMessage', function(msg){
-  console.log("New message ",msg);
   var li=jQuery('<li></li>');
   li.text(`${msg.from}: ${msg.msg}`);
+  jQuery('#chats').append(li);
+});
+
+socket.on('newLocationMessage', function(msg){
+  var li=jQuery('<li></li>');
+  var a =jQuery('<a target="_blank">My current location</a>');
+  li.text(`${msg.from}: `);
+  a.attr('href',msg.url);
+  li.append(a);
   jQuery('#chats').append(li);
 });
 
@@ -21,4 +29,21 @@ jQuery('#chat-form').on('submit',function (e){
   },function(){
 
   });
+});
+
+var locationButton = jQuery('#share-location');
+locationButton.on('click',function(e){
+  e.preventDefault();
+  if(!navigator.geolocation){
+    return alert('Location not supported by browser');
+  }
+  navigator.geolocation.getCurrentPosition(function(position){
+    socket.emit('createLocationMessage',{
+      lat: position.coords.latitude,
+      long: position.coords.longitude
+    });
+  },function(){
+    alert('Unable to fetch location.');
+  });
+
 });
