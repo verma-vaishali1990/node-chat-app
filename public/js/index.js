@@ -11,10 +11,10 @@
 socket.on('newMessage', function(msg){
   console.log("New message",msg);
 });
-socket.emit('createMsg', {
-  to:'Money',
-  msg:'Sure. My work is done'
-});
+// socket.emit('createMsg', {
+//   to:'Money',
+//   msg:'Sure. My work is done'
+// });
 // socket.emit('sendEmail',{
 //   To :'sushmita@gmail.com',
 //   Subject:'urgent'

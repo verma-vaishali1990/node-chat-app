@@ -22,14 +22,18 @@ io.on('connection',(socket)=>{
   // socket.on('sendEmail',(data) =>{
   //   console.log('email sent :',data);
   // });
+  // 
+  // socket.emit('newMessage',{
+  //   from:'Money',
+  //   msg:'Lets leave for home'
+  // });
 
-  socket.emit('newMessage',{
-    from:'Money',
-    msg:'Lets leave for home'
-  });
-
-  socket.on('createMsg',(msg)=>{
-    console.log('Message sent',msg);
+  socket.on('createMsg',(message)=>{
+    console.log('Message sent',message);
+    io.emit('newMessage',{
+      from:message.from,
+      msg:message.msg
+    });
   });
 
   socket.on('disconnect',()=>{
