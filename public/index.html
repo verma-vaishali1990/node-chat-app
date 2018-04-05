@@ -5,6 +5,16 @@
     <title></title>
   </head>
   <body>
-    <p>Welcom to chat app</p>
+    <p>Welcome to chat app</p>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript">
+      var socket = io();
+      socket.on('connect',()=>{
+        console.log('Connected to server');
+      });
+      socket.on('disconnect',()=>{
+        console.log('Connection lost.. Trying to connect');
+      })
+    </script>
   </body>
 </html>
