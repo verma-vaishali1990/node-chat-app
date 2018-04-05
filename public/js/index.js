@@ -5,17 +5,20 @@
   socket.on('disconnect',function() {
   console.log('Connection lost.. Trying to connect');
 });
-// socket.on('emailReceived', function(email){
-//   console.log("New Email",email);
-// });
+
 socket.on('newMessage', function(msg){
   console.log("New message ",msg);
+  var li=jQuery('<li></li>');
+  li.text(`${msg.from}: ${msg.msg}`);
+  jQuery('#chats').append(li);
 });
-// socket.emit('createMsg', {
-//   to:'Money',
-//   msg:'Sure. My work is done'
-// });
-// socket.emit('sendEmail',{
-//   To :'sushmita@gmail.com',
-//   Subject:'urgent'
-// });
+
+jQuery('#chat-form').on('submit',function (e){
+  e.preventDefault();
+  socket.emit('createMessage',{
+    from:'User',
+    msg:jQuery('[name=message]').val()
+  },function(){
+
+  });
+});
