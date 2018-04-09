@@ -87,7 +87,7 @@ locationButton.on('click',function(e){
     });
   },function(){
       locationButton.removeAttr("disabled");
-    alert('Unable to fetch location.');
+      alert('Unable to fetch location.');
   });
 
 });

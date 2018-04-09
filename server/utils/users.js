@@ -22,7 +22,7 @@ class Users {
     var user = this.users.filter((user) =>user.id === id)[0];
     return user;
   }
-  
+
   getUserList(room){
     var users = this.users.filter((user)=> user.room === room );
     var namesArray = users.map((user) =>   user.name);
